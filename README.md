@@ -1,6 +1,9 @@
 # Quick Kick Scores
 A football rankings and team info webpage
 
+Demo live version:
+https://quick-kick-scores.netlify.app
+
 SPA implemented with vanilla JS, HTML and CSS
 
 Comunicates with API-FOOTBALL to get info
