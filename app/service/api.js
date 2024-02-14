@@ -4,22 +4,13 @@ const LA_LIGA_CODE = 140
 const LIGUE_1_CODE = 61
 const API_KEY = 'INSERT YOUR API KEY HERE'
 
-export function getUser() {
-  return user;
-}
-
-export function getApiKey(){
-  return API_KEY
-}
-
 export async function getRankingsFromFootballAPI(leagueCountry){
 
     const leagueID = getLeagueIDFromCrountry(leagueCountry)
 
-    console.log(`leagueID: ${leagueID}`)
     var myHeaders = new Headers();
     myHeaders.append("x-rapidapi-key", API_KEY);
-    myHeaders.append("x-rapidapi-host", "api-football-v1.p.rapidapi.com");
+    myHeaders.append("x-rapidapi-host", "v3.football.api-sports.io/");
 
   var requestOptions = {
     method: 'GET',
@@ -27,19 +18,16 @@ export async function getRankingsFromFootballAPI(leagueCountry){
     redirect: 'follow'
   };
 
-  return fetch(`https://api-football-v1.p.rapidapi.com/v3/standings?league=${leagueID}&season=2023`, requestOptions)
+  return fetch(`https://v3.football.api-sports.io/standings?league=${leagueID}&season=2023`, requestOptions)
     .then(response => response.json())
-    .then(result => {
-      console.log(result)
-      return result.response[0].league
-    })
+    .then(result => result.response[0].league)
     .catch(err => console.log('error', err));
 }
 
 export async function getTeamFromFootballAPI(teamID){
   var myHeaders = new Headers();
-  myHeaders.append("x-rapidapi-key", "2c757fa3bfmshf86a6f2723cb65ap152a89jsn646a5d9c51fc");
-  myHeaders.append("x-rapidapi-host", "api-football-v1.p.rapidapi.com");
+  myHeaders.append("x-rapidapi-key", API_KEY);
+  myHeaders.append("x-rapidapi-host", "v3.football.api-sports.io/");
 
   var requestOptions = {
   method: 'GET',
@@ -47,7 +35,7 @@ export async function getTeamFromFootballAPI(teamID){
   redirect: 'follow'
   };
 
-  return fetch(`https://api-football-v1.p.rapidapi.com/v3/teams?id=${teamID}`, requestOptions)
+  return fetch(`https://v3.football.api-sports.io/teams?id=${teamID}`, requestOptions)
     .then(response => response.json())
     .then(result => {
       return result.response[0]
@@ -57,8 +45,8 @@ export async function getTeamFromFootballAPI(teamID){
 
 export async function getNextFixturesFromFootbalAPI(teamID){
   var myHeaders = new Headers();
-  myHeaders.append("x-rapidapi-key", "2c757fa3bfmshf86a6f2723cb65ap152a89jsn646a5d9c51fc");
-  myHeaders.append("x-rapidapi-host", "api-football-v1.p.rapidapi.com");
+  myHeaders.append("x-rapidapi-key", API_KEY);
+  myHeaders.append("x-rapidapi-host", "v3.football.api-sports.io/");
 
   var requestOptions = {
   method: 'GET',
@@ -66,12 +54,9 @@ export async function getNextFixturesFromFootbalAPI(teamID){
   redirect: 'follow'
   };
 
-  return fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?team=${teamID}&next=10`, requestOptions)
+  return fetch(`https://v3.football.api-sports.io/fixtures?team=${teamID}&next=10`, requestOptions)
     .then(response => response.json())
-    .then(result => {
-      console.log(result)
-      return result.response
-    })
+    .then(result => result.response)
     .catch(err => console.log('error', err));
 }
 
