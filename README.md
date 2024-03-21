@@ -1,5 +1,5 @@
 # Quick Kick Scores
-A football rankings and team info webpage
+A football rankings and team info Single Page Application
 
 Demo live version:
 https://quick-kick-scores.netlify.app
